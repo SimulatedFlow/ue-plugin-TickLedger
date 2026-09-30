@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "TickLedger - The Tick That Never Ran",
+	"Description": "PrimaryActorTick.bCanEverTick is a wish, not a guarantee. An actor can carry bCanEverTick = true and still have no registered tick function - and then Tick() never runs, there is no error, and nothing appears in the log. It happens whenever the flag is turned on after registration already went past: in a Blueprint parent, in a construction script, from a data table. Measured on a real actor: two identical probes, one registered and one not, both with bCanEverTick = true; after ten world ticks the registered one counted 1 tick and the other 0. TickLedger watches every actor and component in the running world and records, for each one, whether it was EVER registered and EVER enabled - not the state at the end, because an object that ticked for a while and was switched off later did its job. It separates 'wants to tick but never registered' from 'registered but never enabled': the first is a wiring mistake, the second is usually deliberate. It runs where the editor cannot: in a packaged build and on a build server, with 0 clean / 1 warnings / 2 errors.",
+	"Category": "Code Plugins",
+	"CreatedBy": "Silvan Teufel",
+	"CreatedByURL": "https://silvan.teufel-engineering.com",
+	"DocsURL": "https://wiki.teufel-engineering.com/en/TickLedger/documentation",
+	"MarketplaceURL": "",
+	"SupportURL": "mailto:teufelsilvan@gmail.com",
+	"EngineVersion": "5.8.0",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "TickLedger",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		}
+	]
+}
